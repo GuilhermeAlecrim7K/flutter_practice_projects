@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:roll_dice/shared/app_colors.dart';
+import 'package:roll_dice/widgets/gradient_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,9 +14,12 @@ class HomePage extends StatelessWidget {
           'Roll dice',
           style: TextStyle(fontSize: 26),
         ),
-        backgroundColor: const Color(0xFF250001),
+        backgroundColor: AppColors.turkeyRed,
       ),
-      body: const Placeholder(),
+      body: const GradientContainer(
+        colors: AppColors.backgroundGradient,
+        child: Placeholder(),
+      ),
     );
   }
 }
