@@ -12,16 +12,17 @@ class DiceRoller extends StatefulWidget {
 class _DiceRollerState extends State<DiceRoller> {
   int _currentRoll = 1;
   final Random _randomizer = Random();
+  final Map<int, Image> _diceRolls = {
+    for (var i = 1; i <= 6; i++)
+      i: Image.asset('assets/images/dice-$i.png', width: 300)
+  };
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          'assets/images/dice-$_currentRoll.png',
-          width: 300,
-        ),
+        _diceRolls[_currentRoll]!,
         const SizedBox(
           height: 30,
         ),
