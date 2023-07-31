@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roll_dice/pages/home_page.dart';
+import 'package:roll_dice/shared/app_colors.dart';
 
 class RollDiceApp extends StatelessWidget {
   const RollDiceApp({super.key});
@@ -11,7 +12,7 @@ class RollDiceApp extends StatelessWidget {
       home: const HomePage(),
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFEF9A9A),
+          seedColor: AppColors.turkeyRed,
         ),
       ),
     );
