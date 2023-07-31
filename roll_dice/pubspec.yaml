@@ -1,0 +1,27 @@
+name: roll_dice
+description: A roll dice application
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lint: ^2.1.2
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/dice-1.png
+    - assets/images/dice-2.png
+    - assets/images/dice-3.png
+    - assets/images/dice-4.png
+    - assets/images/dice-5.png
+    - assets/images/dice-6.png
