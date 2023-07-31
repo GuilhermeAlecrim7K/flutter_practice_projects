@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roll_dice/shared/app_colors.dart';
+import 'package:roll_dice/widgets/dice_roller.dart';
 import 'package:roll_dice/widgets/gradient_container.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,7 +19,9 @@ class HomePage extends StatelessWidget {
       ),
       body: const GradientContainer(
         colors: AppColors.backgroundGradient,
-        child: Placeholder(),
+        child: Center(
+          child: DiceRoller(),
+        ),
       ),
     );
   }
