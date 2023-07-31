@@ -1,3 +1,3 @@
-# roll_dice
+# Roll Dice
 
-A new Flutter project.
+A simple application with an image of a dice and a button. The button triggers the dice roll.
