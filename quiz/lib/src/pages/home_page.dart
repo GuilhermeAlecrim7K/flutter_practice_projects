@@ -9,8 +9,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const GradientContainer(
+      body: GradientContainer(
         colors: AppColors.gradientColors,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: 250,
+                child: Image(
+                  image: AssetImage('assets/images/quiz-logo.png'),
+                ),
+              ),
+              const SizedBox(height: 25),
+              const Text(
+                'Learn Flutter the fun way!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 26,
+                ),
+              ),
+              const SizedBox(height: 50),
+              ElevatedButton(onPressed: () {}, child: const Text('Start Quiz'))
+            ],
+          ),
+        ),
       ),
     );
   }
