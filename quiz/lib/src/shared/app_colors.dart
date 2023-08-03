@@ -6,4 +6,9 @@ class AppColors {
   static const Color battleshipGrey = Color(0xFF909590);
   static const Color outerSpace = Color(0xFF474a48);
   static const Color jet = Color(0xFF2c302e);
+  static const List<Color> gradientColors = [
+    celadon,
+    battleshipGrey,
+    outerSpace,
+  ];
 }
