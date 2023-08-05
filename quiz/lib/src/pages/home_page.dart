@@ -29,7 +29,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              ElevatedButton(onPressed: () {}, child: const Text('Start Quiz'))
+              ElevatedButton.icon(
+                onPressed: () {},
+                label: const Text('Start Quiz'),
+                icon: const Icon(Icons.arrow_circle_right_outlined),
+              )
             ],
           ),
         ),
