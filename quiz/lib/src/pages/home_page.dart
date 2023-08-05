@@ -15,17 +15,18 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(
-                height: 250,
+                height: 280,
                 child: Image(
                   image: AssetImage('assets/images/quiz-logo.png'),
+                  color: Color.fromARGB(180, 255, 255, 255),
                 ),
               ),
               const SizedBox(height: 25),
               const Text(
                 'Learn Flutter the fun way!',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
+                  color: Color.fromARGB(180, 255, 255, 255),
+                  fontSize: 24,
                 ),
               ),
               const SizedBox(height: 50),
