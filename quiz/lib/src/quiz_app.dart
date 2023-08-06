@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz/src/models/quiz_question_model.dart';
 import 'package:quiz/src/pages/home_page.dart';
 import 'package:quiz/src/pages/quiz_questions_page.dart';
+import 'package:quiz/src/pages/quiz_results_page.dart';
 import 'package:quiz/src/shared/app_colors.dart';
 import 'package:quiz/src/widgets/gradient_container.dart';
 
@@ -35,7 +36,11 @@ class _QuizAppState extends State<QuizApp> {
 
   void _showResults(List<QuizQuestion> questions, List<String> userAnswers) {
     setState(() {
-      _currentPage = const Placeholder();
+      _currentPage = QuizResultsPage(
+        questions: questions,
+        userAnswers: userAnswers,
+        restartQuiz: _startQuiz,
+      );
     });
   }
 
