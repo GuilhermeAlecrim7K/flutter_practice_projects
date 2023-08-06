@@ -40,10 +40,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
           child: Text(
             widget.question.question,
-            style: const TextStyle(
-              fontSize: 26,
-              color: Colors.white,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Colors.white,
+                ),
             textAlign: TextAlign.center,
           ),
         ),

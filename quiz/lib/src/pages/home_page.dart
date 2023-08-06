@@ -18,12 +18,12 @@ class HomePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 25),
-          const Text(
+          Text(
             'Learn Flutter the fun way!',
-            style: TextStyle(
-              color: Color.fromARGB(180, 255, 255, 255),
-              fontSize: 24,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: const Color.fromARGB(180, 255, 255, 255),
+                ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 50),
           ElevatedButton.icon(

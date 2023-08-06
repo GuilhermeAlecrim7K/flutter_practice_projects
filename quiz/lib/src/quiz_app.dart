@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:quiz/src/models/quiz_question_model.dart';
 import 'package:quiz/src/pages/home_page.dart';
 import 'package:quiz/src/pages/quiz_questions_page.dart';
@@ -43,6 +45,7 @@ class _QuizAppState extends State<QuizApp> {
       title: "Flutter Quiz",
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.fernGreen),
+        textTheme: GoogleFonts.robotoCondensedTextTheme(),
       ),
       home: Scaffold(
         body: GradientContainer(
