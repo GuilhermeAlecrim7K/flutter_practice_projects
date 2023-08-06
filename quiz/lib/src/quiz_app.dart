@@ -50,7 +50,9 @@ class _QuizAppState extends State<QuizApp> {
       home: Scaffold(
         body: GradientContainer(
           colors: AppColors.gradientColors,
-          child: _currentPage,
+          child: Center(
+            child: _currentPage,
+          ),
         ),
       ),
     );

@@ -40,12 +40,10 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: QuestionWidget(
-        key: ValueKey(questions[_currentQuestionIndex].question),
-        question: questions[_currentQuestionIndex],
-        onChooseAnswer: _onChooseAnswer,
-      ),
+    return QuestionWidget(
+      key: ValueKey(questions[_currentQuestionIndex].question),
+      question: questions[_currentQuestionIndex],
+      onChooseAnswer: _onChooseAnswer,
     );
   }
 }
