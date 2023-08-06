@@ -6,17 +6,30 @@ typedef ChooseAnswerCallback = void Function(
   String userAnswer,
 );
 
-class QuestionWidget extends StatelessWidget {
+class QuestionWidget extends StatefulWidget {
   final QuizQuestion question;
-  final bool? shuffleAlternatives;
   final ChooseAnswerCallback? onChooseAnswer;
 
   const QuestionWidget({
     super.key,
     required this.question,
-    this.shuffleAlternatives,
     this.onChooseAnswer,
   });
+
+  @override
+  State<QuestionWidget> createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
+  late final List<String> _shuffledAlternatives;
+  @override
+  void initState() {
+    _shuffledAlternatives = [
+      widget.question.alternatives.correctAlternative,
+      ...widget.question.alternatives.incorrectAlternatives
+    ]..shuffle();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,7 @@ class QuestionWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
           child: Text(
-            question.question,
+            widget.question.question,
             style: const TextStyle(
               fontSize: 26,
               color: Colors.white,
@@ -34,16 +47,14 @@ class QuestionWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        for (final alternative in [
-          question.alternatives.correctAlternative,
-          ...question.alternatives.incorrectAlternatives
-        ]..shuffle())
+        for (final alternative in _shuffledAlternatives)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 4 * 3,
               child: ElevatedButton(
-                onPressed: () => onChooseAnswer?.call(question, alternative),
+                onPressed: () =>
+                    widget.onChooseAnswer?.call(widget.question, alternative),
                 child: Text(alternative),
               ),
             ),
