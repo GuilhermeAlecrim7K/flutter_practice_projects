@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/src/pages/home_page.dart';
+import 'package:quiz/src/pages/quiz_questions_page.dart';
 import 'package:quiz/src/shared/app_colors.dart';
 import 'package:quiz/src/widgets/gradient_container.dart';
 
@@ -11,7 +12,7 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  final Widget _questionsPage = const Placeholder();
+  final QuizQuestionsPage _questionsPage = const QuizQuestionsPage();
   late final HomePage _homePage;
   Widget? _currentPage;
 
