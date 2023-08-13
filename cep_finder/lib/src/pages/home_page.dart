@@ -1,6 +1,7 @@
 import 'package:cep_finder/src/models/endereco_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:cep_finder/src/repositories/cep_repository_impl.dart';
+import 'package:cep_finder/src/widgets/endereco_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -94,14 +95,9 @@ class _HomePageState extends State<HomePage> {
                     child: const Text('Buscar'),
                   ),
                   const SizedBox(height: 50),
-                  Visibility(
-                    visible: _loading,
-                    child: const CircularProgressIndicator(),
-                  ),
-                  Visibility(
-                    visible: _enderecoModel != null,
-                    child: Text('${_enderecoModel?.toMap()}'),
-                  )
+                  if (_loading) const CircularProgressIndicator(),
+                  if (_enderecoModel != null)
+                    EnderecoWidget(endereco: _enderecoModel!),
                 ],
               ),
             ),
