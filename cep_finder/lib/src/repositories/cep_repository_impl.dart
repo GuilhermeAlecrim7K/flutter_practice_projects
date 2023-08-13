@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:cep_finder/src/exceptions/cep_not_found_exception.dart';
 import 'package:cep_finder/src/models/endereco_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +14,7 @@ class CepRepositoryImpl implements CepRepository {
       final endereco =
           EnderecoModel.fromMap(response.data as Map<String, dynamic>);
       if (endereco.cep == '') {
-        throw Exception('CEP não encontrado.');
+        throw CepNotFoundException(cep);
       } else {
         return endereco;
       }
@@ -20,7 +22,10 @@ class CepRepositoryImpl implements CepRepository {
       log('Error: ${e.error}');
       log('Response: ${e.response}');
       log('Mensagem: ${e.message}', error: e);
-      throw Exception('Erro ao buscar CEP');
+      throw const HttpException(
+        'Não foi possível consultar o CEP neste momento. '
+        'Verifique sua conexão de rede.',
+      );
     }
   }
 }
