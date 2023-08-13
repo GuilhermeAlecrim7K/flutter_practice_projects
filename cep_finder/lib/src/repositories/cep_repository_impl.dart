@@ -8,8 +8,14 @@ class CepRepositoryImpl implements CepRepository {
   @override
   Future<EnderecoModel> getEndereco(String cep) async {
     try {
-      final result = await Dio().get('https://viacep.com.br/ws/$cep');
-      return EnderecoModel.fromMap(result.data as Map<String, dynamic>);
+      final response = await Dio().get('https://viacep.com.br/ws/$cep/json');
+      final endereco =
+          EnderecoModel.fromMap(response.data as Map<String, dynamic>);
+      if (endereco.cep == '') {
+        throw Exception('CEP não encontrado.');
+      } else {
+        return endereco;
+      }
     } on DioException catch (e) {
       log('Error: ${e.error}');
       log('Response: ${e.response}');
