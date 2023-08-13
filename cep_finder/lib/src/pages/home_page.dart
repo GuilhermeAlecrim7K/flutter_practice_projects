@@ -1,3 +1,5 @@
+import 'package:cep_finder/src/exceptions/cep_not_found_exception.dart';
+import 'package:cep_finder/src/exceptions/http_request_exception.dart';
 import 'package:cep_finder/src/models/endereco_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:cep_finder/src/repositories/cep_repository_impl.dart';
@@ -32,6 +34,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Busca CEP'),
@@ -83,12 +88,27 @@ class _HomePageState extends State<HomePage> {
                           });
                         }
                       } on Exception catch (e) {
+                        String? exceptionMessage;
+                        if (e is CepNotFoundException) {
+                          exceptionMessage = e.message;
+                        } else if (e is HttpRequestException) {
+                          exceptionMessage = e.message;
+                        }
                         setState(() {
                           _loading = false;
                           _enderecoModel = null;
                         });
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(e.toString())),
+                          SnackBar(
+                            content: Text(
+                              exceptionMessage ??
+                                  'Não foi possível consultar o CEP neste momento.',
+                              style: textTheme.titleSmall?.copyWith(
+                                color: colorScheme.onErrorContainer,
+                              ),
+                            ),
+                            backgroundColor: colorScheme.errorContainer,
+                          ),
                         );
                       }
                     },
