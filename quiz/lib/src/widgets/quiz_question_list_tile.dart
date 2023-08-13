@@ -23,18 +23,20 @@ class QuizQuestionListTile extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
+        SizedBox(
+          height: 30,
+          width: 30,
+          child: Card(
             color: isCorrect ? colorScheme.primary : colorScheme.error,
-          ),
-          child: Center(
-            child: Text(
-              '$questionIndex',
-              style: textTheme.labelSmall?.copyWith(
-                color: isCorrect ? colorScheme.onPrimary : colorScheme.onError,
+            elevation: 3,
+            shape: const CircleBorder(),
+            child: Center(
+              child: Text(
+                '$questionIndex',
+                style: textTheme.labelSmall?.copyWith(
+                  color:
+                      isCorrect ? colorScheme.onPrimary : colorScheme.onError,
+                ),
               ),
             ),
           ),
