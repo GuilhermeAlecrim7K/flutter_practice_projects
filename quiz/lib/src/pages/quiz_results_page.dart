@@ -35,7 +35,7 @@ class QuizResultsPage extends StatelessWidget {
                 return QuizQuestionListTile(
                   isCorrect: _isCorrectAnswer(index),
                   question: questions[index],
-                  questionIndex: index,
+                  questionIndex: index + 1,
                   userAnswer: userAnswers[index],
                 );
               },
