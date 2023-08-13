@@ -28,7 +28,7 @@ class QuizQuestionListTile extends StatelessWidget {
           width: 20,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isCorrect ? colorScheme.primary : Colors.red[300],
+            color: isCorrect ? colorScheme.primary : colorScheme.error,
           ),
           child: Center(
             child: Text(
