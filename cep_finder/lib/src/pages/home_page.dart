@@ -1,9 +1,9 @@
 import 'package:cep_finder/src/exceptions/cep_not_found_exception.dart';
 import 'package:cep_finder/src/exceptions/http_request_exception.dart';
-import 'package:cep_finder/src/models/endereco_model.dart';
+import 'package:cep_finder/src/models/adress_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:cep_finder/src/repositories/cep_repository_impl.dart';
-import 'package:cep_finder/src/widgets/endereco_widget.dart';
+import 'package:cep_finder/src/widgets/address_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';

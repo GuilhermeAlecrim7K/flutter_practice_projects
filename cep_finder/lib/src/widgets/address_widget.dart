@@ -1,4 +1,4 @@
-import 'package:cep_finder/src/models/endereco_model.dart';
+import 'package:cep_finder/src/models/adress_model.dart';
 import 'package:flutter/material.dart';
 
 class AddressWidget extends StatelessWidget {

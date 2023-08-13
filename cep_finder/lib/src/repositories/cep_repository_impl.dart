@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cep_finder/src/exceptions/cep_not_found_exception.dart';
-import 'package:cep_finder/src/models/endereco_model.dart';
+import 'package:cep_finder/src/models/adress_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:dio/dio.dart';
 
