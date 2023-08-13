@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   final _cepMaskedTextInputFormatter = MaskTextInputFormatter(
     mask: '#####-###',
   );
-  EnderecoModel? _enderecoModel;
+  AddressModel? _enderecoModel;
   final _cepTextEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 50),
                   if (_loading) const CircularProgressIndicator(),
                   if (_enderecoModel != null)
-                    EnderecoWidget(endereco: _enderecoModel!),
+                    AddressWidget(address: _enderecoModel!),
                 ],
               ),
             ),

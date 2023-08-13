@@ -1,9 +1,9 @@
 import 'package:cep_finder/src/models/endereco_model.dart';
 import 'package:flutter/material.dart';
 
-class EnderecoWidget extends StatelessWidget {
-  const EnderecoWidget({super.key, required this.endereco});
-  final EnderecoModel endereco;
+class AddressWidget extends StatelessWidget {
+  const AddressWidget({super.key, required this.address});
+  final AddressModel address;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class EnderecoWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('CEP: ${endereco.cep}'),
-            Text('Logradouro: ${endereco.logradouro}'),
+            Text('CEP: ${address.cep}'),
+            Text('Logradouro: ${address.street}'),
             Visibility(
-              visible: endereco.complemento.isNotEmpty,
-              child: Text('Complemento: ${endereco.complemento}'),
+              visible: address.complement.isNotEmpty,
+              child: Text('Complemento: ${address.complement}'),
             ),
-            Text('Bairro: ${endereco.bairro}'),
-            Text('Localidade: ${endereco.localidade}'),
-            Text('UF: ${endereco.uf}'),
+            Text('Bairro: ${address.district}'),
+            Text('Localidade: ${address.city}'),
+            Text('UF: ${address.stateAcronym}'),
           ],
         ),
       ),

@@ -8,11 +8,11 @@ import 'package:dio/dio.dart';
 
 class CepRepositoryImpl implements CepRepository {
   @override
-  Future<EnderecoModel> getEndereco(String cep) async {
+  Future<AddressModel> getEndereco(String cep) async {
     try {
       final response = await Dio().get('https://viacep.com.br/ws/$cep/json');
       final endereco =
-          EnderecoModel.fromMap(response.data as Map<String, dynamic>);
+          AddressModel.fromMap(response.data as Map<String, dynamic>);
       if (endereco.cep == '') {
         throw CepNotFoundException(cep);
       } else {

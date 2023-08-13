@@ -1,47 +1,47 @@
 import 'dart:convert';
 
-class EnderecoModel {
+class AddressModel {
   final String cep;
-  final String logradouro;
-  final String complemento;
-  final String bairro;
-  final String localidade;
-  final String uf;
+  final String street;
+  final String complement;
+  final String district;
+  final String city;
+  final String stateAcronym;
 
-  const EnderecoModel({
+  const AddressModel({
     required this.cep,
-    required this.logradouro,
-    required this.complemento,
-    required this.bairro,
-    required this.localidade,
-    required this.uf,
+    required this.street,
+    required this.complement,
+    required this.district,
+    required this.city,
+    required this.stateAcronym,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'cep': cep,
-      'logradouro': logradouro,
-      'complemento': complemento,
-      'bairro': bairro,
-      'localidade': localidade,
-      'uf': uf,
+      'logradouro': street,
+      'complemento': complement,
+      'bairro': district,
+      'localidade': city,
+      'uf': stateAcronym,
     };
   }
 
   String toJson() => jsonEncode(toMap());
 
-  factory EnderecoModel.fromMap(Map<String, dynamic> map) {
-    return EnderecoModel(
+  factory AddressModel.fromMap(Map<String, dynamic> map) {
+    return AddressModel(
       cep: map['cep'] as String? ?? '',
-      logradouro: map['logradouro'] as String? ?? '',
-      complemento: map['complemento'] as String? ?? '',
-      bairro: map['bairro'] as String? ?? '',
-      localidade: map['localidade'] as String? ?? '',
-      uf: map['uf'] as String? ?? '',
+      street: map['logradouro'] as String? ?? '',
+      complement: map['complemento'] as String? ?? '',
+      district: map['bairro'] as String? ?? '',
+      city: map['localidade'] as String? ?? '',
+      stateAcronym: map['uf'] as String? ?? '',
     );
   }
 
-  factory EnderecoModel.fromJson(String source) {
-    return EnderecoModel.fromMap(jsonDecode(source) as Map<String, dynamic>);
+  factory AddressModel.fromJson(String source) {
+    return AddressModel.fromMap(jsonDecode(source) as Map<String, dynamic>);
   }
 }
