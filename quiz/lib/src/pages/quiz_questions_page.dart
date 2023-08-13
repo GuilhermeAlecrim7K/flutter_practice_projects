@@ -24,17 +24,18 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
     _currentQuestionIndex = questions
         .indexWhere((element) => element.question == question.question);
     _userAnswers[_currentQuestionIndex] = userAnswer;
-    _goToNextPage();
-  }
 
-  void _goToNextPage() {
     if (_currentQuestionIndex < questions.length - 1) {
-      setState(() {
-        _currentQuestionIndex++;
-      });
+      _displayNextQuestion();
     } else {
       widget.finishQuestions?.call(questions, _userAnswers);
     }
+  }
+
+  void _displayNextQuestion() {
+    setState(() {
+      _currentQuestionIndex++;
+    });
   }
 
   @override
