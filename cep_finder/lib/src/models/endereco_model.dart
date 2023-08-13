@@ -8,7 +8,7 @@ class EnderecoModel {
   final String localidade;
   final String uf;
 
-  EnderecoModel({
+  const EnderecoModel({
     required this.cep,
     required this.logradouro,
     required this.complemento,
