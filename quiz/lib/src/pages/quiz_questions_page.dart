@@ -24,7 +24,6 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
     _currentQuestionIndex = questions
         .indexWhere((element) => element.question == question.question);
     _userAnswers[_currentQuestionIndex] = userAnswer;
-    debugPrint('${question.question} - $userAnswer');
     _goToNextPage();
   }
 
