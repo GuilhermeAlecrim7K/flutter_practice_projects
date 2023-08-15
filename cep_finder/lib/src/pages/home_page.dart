@@ -34,9 +34,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final textTheme = theme.textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Busca CEP'),
@@ -78,48 +75,12 @@ class _HomePageState extends State<HomePage> {
                         }
                         return null;
                       },
+                      onFieldSubmitted: (_) => _submitCep(),
                     ),
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
-                    onPressed: () async {
-                      final valid = _formKey.currentState?.validate() ?? false;
-                      try {
-                        if (valid) {
-                          setState(() => _loading = true);
-                          final endereco = await _cepRepository.getEndereco(
-                            _cepMaskedTextInputFormatter.getUnmaskedText(),
-                          );
-                          setState(() {
-                            _enderecoModel = endereco;
-                            _loading = false;
-                          });
-                        }
-                      } on Exception catch (e) {
-                        String? exceptionMessage;
-                        if (e is CepNotFoundException) {
-                          exceptionMessage = e.message;
-                        } else if (e is HttpRequestException) {
-                          exceptionMessage = e.message;
-                        }
-                        setState(() {
-                          _loading = false;
-                          _enderecoModel = null;
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              exceptionMessage ??
-                                  'Não foi possível consultar o CEP neste momento.',
-                              style: textTheme.titleSmall?.copyWith(
-                                color: colorScheme.onErrorContainer,
-                              ),
-                            ),
-                            backgroundColor: colorScheme.errorContainer,
-                          ),
-                        );
-                      }
-                    },
+                    onPressed: _submitCep,
                     child: const Text('Buscar'),
                   ),
                   const SizedBox(height: 50),
@@ -133,5 +94,47 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<void> _submitCep() async {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+    final valid = _formKey.currentState?.validate() ?? false;
+    try {
+      if (valid) {
+        setState(() => _loading = true);
+        final endereco = await _cepRepository.getEndereco(
+          _cepMaskedTextInputFormatter.getUnmaskedText(),
+        );
+        setState(() {
+          _enderecoModel = endereco;
+          _loading = false;
+        });
+      }
+    } on Exception catch (e) {
+      String? exceptionMessage;
+      if (e is CepNotFoundException) {
+        exceptionMessage = e.message;
+      } else if (e is HttpRequestException) {
+        exceptionMessage = e.message;
+      }
+      setState(() {
+        _loading = false;
+        _enderecoModel = null;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            exceptionMessage ??
+                'Não foi possível consultar o CEP neste momento.',
+            style: textTheme.titleSmall?.copyWith(
+              color: colorScheme.onErrorContainer,
+            ),
+          ),
+          backgroundColor: colorScheme.errorContainer,
+        ),
+      );
+    }
   }
 }
