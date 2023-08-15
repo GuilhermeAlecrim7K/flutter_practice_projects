@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:cep_finder/src/exceptions/cep_not_found_exception.dart';
+import 'package:cep_finder/src/exceptions/http_request_exception.dart';
 import 'package:cep_finder/src/models/adress_model.dart';
 import 'package:cep_finder/src/repositories/cep_repository.dart';
 import 'package:dio/dio.dart';
@@ -21,10 +21,18 @@ class CepRepositoryImpl implements CepRepository {
     } on DioException catch (e) {
       log('Error: ${e.error}');
       log('Response: ${e.response}');
-      log('Mensagem: ${e.message}', error: e);
-      throw const HttpException(
-        'Não foi possível consultar o CEP neste momento. '
-        'Verifique sua conexão de rede.',
+      log('Message: ${e.message}', error: e);
+      String? helperMessage;
+      switch (e.type) {
+        case DioExceptionType.connectionError:
+        case DioExceptionType.connectionTimeout:
+        case DioExceptionType.receiveTimeout:
+        case DioExceptionType.sendTimeout:
+          helperMessage = 'Verifique sua conexão de rede.';
+        default:
+      }
+      throw HttpRequestException(
+        'Não foi possível consultar o CEP. $helperMessage',
       );
     }
   }
