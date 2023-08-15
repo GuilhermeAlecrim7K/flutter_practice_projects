@@ -68,8 +68,15 @@ class _HomePageState extends State<HomePage> {
                         _cepMaskedTextInputFormatter,
                       ],
                       keyboardType: TextInputType.number,
-                      validator: (value) =>
-                          value?.isEmpty ?? true ? 'Campo obrigatório' : null,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Campo obrigatório';
+                        }
+                        if (!_cepMaskedTextInputFormatter.isFill()) {
+                          return 'CEP inválido';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(height: 30),
