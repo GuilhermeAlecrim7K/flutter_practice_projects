@@ -39,56 +39,53 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Busca CEP'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 32),
-          child: Form(
-            key: _formKey,
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 200,
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text('CEP'),
-                        hintText: '01001-000',
-                        prefixIcon: Icon(Icons.home),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                        ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 200,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      label: Text('CEP'),
+                      hintText: '01001-000',
+                      prefixIcon: Icon(Icons.home),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
-                      controller: _cepTextEditingController,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        _cepMaskedTextInputFormatter,
-                      ],
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Campo obrigatório';
-                        }
-                        if (!_cepMaskedTextInputFormatter.isFill()) {
-                          return 'CEP inválido';
-                        }
-                        return null;
-                      },
-                      onFieldSubmitted: (_) => _submitCep(),
                     ),
+                    controller: _cepTextEditingController,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      _cepMaskedTextInputFormatter,
+                    ],
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obrigatório';
+                      }
+                      if (!_cepMaskedTextInputFormatter.isFill()) {
+                        return 'CEP inválido';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (_) => _submitCep(),
                   ),
-                  const SizedBox(height: 30),
-                  ElevatedButton(
-                    onPressed: _submitCep,
-                    child: const Text('Buscar'),
-                  ),
-                  const SizedBox(height: 50),
-                  if (_loading) const CircularProgressIndicator(),
-                  if (_enderecoModel != null)
-                    AddressWidget(address: _enderecoModel!),
-                ],
-              ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: _submitCep,
+                  child: const Text('Buscar'),
+                ),
+                const SizedBox(height: 50),
+                if (_loading) const CircularProgressIndicator(),
+                if (_enderecoModel != null)
+                  AddressWidget(address: _enderecoModel!),
+              ],
             ),
           ),
         ),
