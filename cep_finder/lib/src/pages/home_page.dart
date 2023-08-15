@@ -43,8 +43,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 32),
           child: Form(
             key: _formKey,
             child: Center(
